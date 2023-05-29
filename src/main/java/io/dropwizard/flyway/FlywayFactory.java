@@ -648,7 +648,6 @@ public class FlywayFactory {
               .cleanOnValidationError(cleanOnValidationError)
               .encoding(encoding)
               .group(group)
-              .ignoreMigrationPatterns(ignoreMigrationPatterns.toArray(emptyStringArray))
               .installedBy(installedBy)
               .locations(locations.toArray(emptyStringArray))
               .mixed(mixed)
@@ -673,6 +672,9 @@ public class FlywayFactory {
         }
 
         // Commercial features
+        if (ignoreMigrationPatterns != null) {
+            flyway.ignoreMigrationPatterns(ignoreMigrationPatterns.toArray(emptyStringArray));
+        }
         if (batch != null) {
             flyway.batch(batch);
         }
